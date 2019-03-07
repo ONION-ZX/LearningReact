@@ -1,8 +1,4 @@
----
-title: 创建React应用
-categories: 
-    - 技术
----
+# 创建React应用
 >[Create-react-app Github](https://github.com/facebook/create-react-app)
 
 创建一个React应用
