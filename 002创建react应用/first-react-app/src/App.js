@@ -6,6 +6,7 @@ class App extends React.Component {
     return (
       <div>
         <div id="a">
+          <p>I'm App component</p>
           <YoButton/>
           <YoButton/>
           <YoButton/>
@@ -18,4 +19,16 @@ class App extends React.Component {
   }
 }
 
-export default App;
+class Yo extends React.Component {
+  render() {
+    return (
+      <div>
+        <p>I'm Yo component</p>
+        <App/>
+        <App/>
+      </div>
+    )
+  }
+}
+
+export default Yo;
