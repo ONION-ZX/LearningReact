@@ -1,4 +1,9 @@
 class LikeButton extends Component {
+   //添加默认值后就不需要判断配置属性是否传进来了 
+    static defaltProps = {
+        likedText: '取消',
+        unlikedText: '点赞'
+    }
     constructor() {
         super();
         this.state = {isLiked: false};
@@ -7,11 +12,8 @@ class LikeButton extends Component {
         this.setState({
             isLiked: !this.state.isLiked
         })
-        if(this.props.onClick) {
-            this.props.onClick();
-        }
     }
-    
+
     render() {
         const wordings = this.props.wordings || {
             likedText: '取消',
@@ -19,7 +21,7 @@ class LikeButton extends Component {
         }
         return(
             <button onClick={this.handleClickOnLikeButton.bind(this)}>
-                {this.state.isLiked ? wordings.likedText : wordings.unlikedText} 👍
+                {this.state.isLiked ? this.props.likedText : this.props.unlikedText} 👍
             </button>
         )
     }
