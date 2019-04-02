@@ -1,0 +1,46 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<script type="text/babel">
+//公共组件类
+class LikeButton extend Component {
+    constructor(props) {
+        super(props);
+        this.state = {isLiked: false};
+    }
+    onClick() {
+        this.setState({
+            isLiked: !this.isLiked;
+        });
+    }
+    render () {
+      return `
+        <button class='like-btn' style="background-color: ${this.props.bgColor}">
+          <span class='like-text'>
+            ${this.state.isLiked ? '取消' : '点赞'}
+          </span>
+          <span>👍</span>
+        </button>
+      `
+    }
+}
+mount(new LikeButton(), wrapper);
+
+class RedBlueButton extends Component {
+    constructor(props) {
+        this.state = {
+            color: red;
+        }
+    }
+    onClick() {
+        this.setState({color: blue});
+    }
+    render () {
+      return `
+        <div style='color: ${this.state.color};'>${this.state.color}</div>
+      `
+    }
+}
+</script>

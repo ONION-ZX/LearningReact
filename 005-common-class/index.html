@@ -1,0 +1,36 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<script type="text/babel">
+//公共组件类
+class Component {
+    //添加自定义配置
+    constructor(props = {}) {
+        this.props = props;
+    }
+    setState(state) {
+        const oldEl = this.el;
+        this.state = state;
+        this._renderDOM();
+        if(this.onStateChange)  this.onStateChange(oldEl, this.el)
+    }
+    
+    //私有方法
+    _renderDOM() {
+        this.el = createDOMFromString(this.render());
+        if(this.onClick) {
+            this.el.addEventListener('click', this.onClick.bind(this), false);
+        }
+        return this.el;
+    }
+}
+const mount = (component, wrapper) => {
+    wrapper.appendChild(component._renderDOM());
+    component.onStateChange = (oldEl, newEl) => {
+        wrapper.insertBefore(newEl, oldEl);
+        wrapper.removeChild(oldEl);
+    }
+}
+</script>
