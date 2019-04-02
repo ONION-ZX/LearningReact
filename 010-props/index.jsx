@@ -7,6 +7,9 @@ class LikeButton extends Component {
         this.setState({
             isLiked: !this.state.isLiked
         })
+        if(this.props.onClick) {
+            this.props.onClick();
+        }
     }
     render() {
         const wordings = this.props.wordings || {
@@ -26,7 +29,9 @@ class Index extends Component {
     render() {
         return (
             <div>
-                <LikeButton wordings={{likedText: '已赞', unlikedText: '赞'}} />
+                <LikeButton 
+                    wordings={{likedText: '已赞', unlikedText: '赞'}} 
+                    onClick={() => console.log('click on like button!')}/>
             </div>
         )
     }
