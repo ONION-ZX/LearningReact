@@ -8,15 +8,14 @@ class Component {
     ...
     render() {
         const isGoodWord = true;
+        const goodWord = <strong>is good</strong>;
+        const badWord = <strong>is bad</strong>;
         return (
             <div>
                 <h1>
-                    React小书
-                    {   
-                        //isGoodWord为true时显示xxx 否则隐藏
-                        isGoodWord ? <strong> is good </strong> : null
-                    }    
-                </h1>    
+                    React 小书
+                    {isGoodWord ? goodWord : badWord}
+                </h1>
             </div>
         )
     }
