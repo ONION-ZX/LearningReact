@@ -1,0 +1,24 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<script type="text/babel">
+class Component {
+    ...
+    render() {
+        const isGoodWord = true;
+        return (
+            <div>
+                <h1>
+                    React小书
+                    {   
+                        //isGoodWord为true时显示xxx 否则隐藏
+                        isGoodWord ? <strong> is good </strong> : null
+                    }    
+                </h1>    
+            </div>
+        )
+    }
+}
+</script>
