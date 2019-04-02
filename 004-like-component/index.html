@@ -8,7 +8,8 @@
         constructor() {
             this.state = {isLiked: false},
         }
-
+        
+        //组件外面需要知道这个组件发生了改变，并更新DOM元素
         setState(state) {
             const oldEl = this.el;
             this.state = state;
