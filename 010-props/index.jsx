@@ -11,6 +11,7 @@ class LikeButton extends Component {
             this.props.onClick();
         }
     }
+    
     render() {
         const wordings = this.props.wordings || {
             likedText: '取消',
