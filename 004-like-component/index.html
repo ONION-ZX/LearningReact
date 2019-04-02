@@ -1,0 +1,28 @@
+<div id="root"></div>
+<script src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+
+<script type="text/babel">
+    class LikeButton {
+        constructor() {
+            this.state = {isLiked: false},
+        }
+
+        changeLikeText() {
+            const LikeText = this.el.querySelector('.like-text');
+            this.state.isLiked = !this.state.isLiked;
+            LikeText.innerHTML = this.state.isLiked ? '取消' : '点赞';
+        }
+        render() {
+            this.el = createDomFromString(`
+               <button class="like-button">
+                    <span class="like-text">点赞</span>
+                    <span>👍</span>
+                </button>
+            `);
+            this.el.addEventListener('click', this.changeLikeText.bind(this), false);
+            return this.el;
+        }
+    }
+</script>
