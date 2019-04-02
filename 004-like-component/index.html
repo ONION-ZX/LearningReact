@@ -9,15 +9,20 @@
             this.state = {isLiked: false},
         }
 
+        setState(state) {
+            this.state = state;
+            this.el = this.render();
+        }
+
         changeLikeText() {
-            const LikeText = this.el.querySelector('.like-text');
-            this.state.isLiked = !this.state.isLiked;
-            LikeText.innerHTML = this.state.isLiked ? '取消' : '点赞';
+            this.setState({
+                isLiked: !this.state.isLiked;
+            })
         }
         render() {
             this.el = createDomFromString(`
                <button class="like-button">
-                    <span class="like-text">点赞</span>
+                    <span class="like-text">${this.state.isLiked? '取消' : '点赞'}</span>
                     <span>👍</span>
                 </button>
             `);
