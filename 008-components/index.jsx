@@ -28,11 +28,13 @@ class Main extends Component {
 
 class Index extends Component {
     render() {
-        <div>
-            <Header />
-            <Main />
-            <Footer />
-        </div>
+        return (
+            <div>
+                <Header />
+                <Main />
+                <Footer />
+            </div>
+        )
     }
  }
 
