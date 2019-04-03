@@ -6,21 +6,16 @@ const users = [
     { username: 'Lucy', age: 20, gender: 'female' }
   ];
 
-class Index extends Component {
+class User extends Component {
     render() {
-        const usersElements = [];
-        for(let user of users) {
-            usersElements.push(
-                <div>
-                    <div>姓名: {user.username}</div>
-                    <div>年龄: {user.age}</div>
-                    <div>性别: {user.gender}</div>
-                    <hr />
-                </div>
-            )
-        }
+        const { user } = this.props;
         return (
-            <div>{usersElements}</div>
+            <div>
+                <div>姓名：{user.username}</div>
+                <div>年龄：{user.age}</div>
+                <div>性别：{user.gender}</div>
+                <hr />
+            </div>
         )
     }
 }
@@ -30,21 +25,12 @@ ReactDOM.render(
     document.getElementById('root')
 )
 
-//使用map渲染列表数据
+//使用map渲染列表数据优化
 class Index extends Component {
     render() {
         return(
             <div>
-                {users.map((user) => {
-                    return (
-                        <div>
-                            <div>姓名: {user.username}</div>
-                            <div>年龄: {user.age}</div>
-                            <div>性别: {user.gender}</div>
-                            <hr />
-                        </div>
-                    )
-                })}
+                {users.map((user) => <User user = {user} />)}
             </div>
         )
     }
