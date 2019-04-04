@@ -19,6 +19,14 @@ class CommentInput extends Component {
             content: event.target.value
         })
     }
+    handleSubmit() {
+        if(this.props.onSubmit) {
+            const {username, content} = this.state;
+            this.props.onSubmit({username, content});
+        }
+        //提交后清空评论内容
+        this.setState({content: ''});
+    }
     render() {
         return(
             <div className='comment-input'>
@@ -39,7 +47,7 @@ class CommentInput extends Component {
                     </div>
                 </div>
                 <div className="comment-field-button">
-                    <button>发布</button>
+                    <button onClick={this.handleSubmit.bind(this)}>发布</button>
                 </div>
             </div>
         )
