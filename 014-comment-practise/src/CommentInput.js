@@ -39,7 +39,12 @@ class CommentInput extends Component {
     handleSubmit() {
         if(this.props.onSubmit) {
             const { name, content } = this.state;
-            this.props.onSubmit({name, content, createdTime: +new Date()});
+            this.props.onSubmit({
+                name, 
+                content, 
+                //评论发布时间戳
+                createdTime: +new Date()
+            });
         }
         //提交后清空
         this.setState({content: ''});
