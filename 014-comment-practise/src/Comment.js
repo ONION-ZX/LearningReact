@@ -49,7 +49,7 @@ class Comment extends Component {
         return (
             <div className="comment">
                 <div className="comment-user">
-                    <span>{this.props.comment.name}</span>
+                    <span>{this.props.comment.name}:</span>
                 </div>
                 <p dangerouslySetInnerHTML={{__html: this._getProcessedContent(this.props.comment.content)}}></p>
                 <span className="comment-createdtime">
