@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class CommentInput extends Component {
+    //组件参数验证
     static propTypes = {
         onSubmit: PropTypes.func
     }
@@ -63,6 +64,7 @@ class CommentInput extends Component {
                 <div className="comment-field">
                     <span className="comment-field-name">评论内容：</span>
                     <div className="comment-field-input">
+                    {/*利用ref获取输入框元素*/}
                         <textarea
                             ref={(textarea) => this.textarea = textarea}
                             value={this.state.content} 
@@ -77,6 +79,7 @@ class CommentInput extends Component {
         )
     }
     componentDidMount() {
+        //页面加载完成后自动聚焦
         this.textarea.focus();
     }
 }
