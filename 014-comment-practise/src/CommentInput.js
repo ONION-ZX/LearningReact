@@ -1,30 +1,19 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
+import wrapWithLoadData from './wrapWithLoadData';
+import PropTypes from 'prop-types'
 class CommentInput extends Component {
     //组件参数验证
     static propTypes = {
-        onSubmit: PropTypes.func
+        onSubmit: PropTypes.func,
+        data: PropTypes.func,
+        saveData: PropTypes.func.isRequired
     }
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            name: '',
+            name: props.data,
             content: '',
         }
-    }
-    componentWillMount() {
-        this._loadUsername();
-    }
-    //私有方法
-    _loadUsername() {
-        const name = localStorage.getItem('name');
-        if(name) {
-            this.setState({name})
-        }
-    }
-    _saveUsername(name) {
-        localStorage.setItem('name', name)
     }
     handleInputName(event) {
         this.setState({
@@ -50,7 +39,7 @@ class CommentInput extends Component {
         this.setState({content: ''});
     }
     handleNameBlur(event) {
-        this._saveUsername(event.target.value);
+        this.props.saveData(event.target.value);
     }
 
     render() {
@@ -88,5 +77,7 @@ class CommentInput extends Component {
         this.textarea.focus();
     }
 }
+
+CommentInput = wrapWithLoadData(CommentInput, 'name')
 
 export default CommentInput;
