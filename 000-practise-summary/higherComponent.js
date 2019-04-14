@@ -22,11 +22,11 @@ Post = loadAndRefresh('/post')(Post)
 const loadAndRefresh = (url) => (WrappedComponent) => {
     return class extends Component {
       constructor() {
-              super();
-              this.state = {
-                  content: ''
-              }
-          }
+        super();
+        this.state = {
+            content: ''
+        }
+      }
       componentWillMount () {
         this._loadData()
       }
