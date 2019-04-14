@@ -17,4 +17,4 @@
 6. 类似 Markdown 的行内代码块显示功能，用户输入的用 `` 包含起来的内容都会被处理成用 <code> 元素包含。例如输入 `console.log` 就会处理成 <code>console.log</code> 再显示到页面上。
 
 贴张图：
-![''](https://ws3.sinaimg.cn/large/005BYqpgly1g1wtkl71ypj30vy0ioq43.jpg)
+![''](https://ws3.sinaimg.cn/large/006tNc79ly1g22a7y6f7dj30uc0nw75f.jpg)
