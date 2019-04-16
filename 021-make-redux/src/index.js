@@ -1,12 +1,12 @@
-function createStore(state, stateChanger) {
-  const listeners = [];
-  const subscribe = (listener) => listener.push(listener);
-  const getState = () => state; //获取state数据
+function createStore (state, stateChanger) {
+  const listeners = []
+  const subscribe = (listener) => listeners.push(listener)
+  const getState = () => state
   const dispatch = (action) => {
-    stateChanger(state, action);
-    listeners.forEach((listener) => listener());
+    stateChanger(state, action)
+    listeners.forEach((listener) => listener())
   }
-  return { getState, dispatch, subscribe};
+  return { getState, dispatch, subscribe }
 }
 
 function renderApp (appState) {
@@ -50,9 +50,9 @@ function stateChanger (state, action) {
   }
 }
 
-const store = createStore(appState, stateChanger);
-store.subscribe(() => renderApp(store.getState())); //监听数据变化
+const store = createStore(appState, stateChanger)
+store.subscribe(() => renderApp(store.getState())) // 监听数据变化
 
-renderApp(store.getState()); //首次渲染
+renderApp(store.getState()) // 首次渲染页面
 store.dispatch({ type: 'UPDATE_TITLE_TEXT', text: '《React.js 小书》' }) // 修改标题文本
 store.dispatch({ type: 'UPDATE_TITLE_COLOR', color: 'blue' }) // 修改标题颜色
