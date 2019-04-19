@@ -5,12 +5,12 @@ function themeReducer(state, action) {
     }
     switch (action.type) {
         case 'UPDATE_THEME_NAME':
-            return { ...state, themeName: action.themeName }
+            return {...state, themeName: action.themeName}
         case 'UPDATE_THEME_COLOR':
-            return { ...state, themeColor: action.themeColor }
+            return {...state, themeColor: action.themeColor}
         default:
             return state
     }
 }
 
-const store = createStore(themeReducer);
+const state = createStore(themeReducer);
