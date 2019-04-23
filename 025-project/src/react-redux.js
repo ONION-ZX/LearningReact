@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export const connect = (mapStateToProps) => (WrappedComponent) => {
+export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
     class Connect extends Component {
         static contextTypes = {
             store: PropTypes.object
@@ -9,7 +9,6 @@ export const connect = (mapStateToProps) => (WrappedComponent) => {
 
         constructor() {
             super();
-            //保存需要传给被包装组件的所有参数
             this.state = { allProps: {}};
         }
         componentWillMount() {
@@ -20,10 +19,12 @@ export const connect = (mapStateToProps) => (WrappedComponent) => {
 
         _updateProps() {
             const { store } = this.context;
-            let stateProps = mapStateToProps(store.getState(), this.props);
+            let stateProps = mapStateToProps ? mapStateToProps(store.getState(), this.props) : {};
+            let dispathProps = mapDispatchToProps ? mapDispatchToProps(store.getState(), this.props) : {};
             this.setState({
                 allProps: {
                     ...stateProps,
+                    ...dispathProps,
                     ...this.props
                 }
             })
