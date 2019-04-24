@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import wrapWithLoadData from './wrapWithLoadData';
 import PropTypes from 'prop-types'
-class CommentInput extends Component {
+export default class CommentInput extends Component {
     //组件参数验证
     static propTypes = {
         onSubmit: PropTypes.func,
         data: PropTypes.func,
         saveData: PropTypes.func.isRequired
+    }
+    static defaultProps = {
+        username: ''
     }
     constructor(props) {
         super(props);
@@ -14,6 +16,10 @@ class CommentInput extends Component {
             name: props.data,
             content: '',
         }
+    }
+    componentDidMount() {
+        //页面加载完成后自动聚焦
+        this.textarea.focus();
     }
     handleInputName(event) {
         this.setState({
@@ -39,8 +45,11 @@ class CommentInput extends Component {
         this.setState({content: ''});
     }
     handleNameBlur(event) {
-        this.props.saveData(event.target.value);
+        if(this.props.onNameBlur) {
+            this.props.onNameBlur(event.target.value);
+        }
     }
+    
 
     render() {
         return (
@@ -71,10 +80,6 @@ class CommentInput extends Component {
                 </div>
             </div>
         )
-    }
-    componentDidMount() {
-        //页面加载完成后自动聚焦
-        this.textarea.focus();
     }
 }
 
