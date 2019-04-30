@@ -82,13 +82,13 @@ import './index.css';
       const current = history[this.state.stepNumber];
       const winner = calculateWinner(current.squares);
 
-      const moves = history.map((step, move) => {
-        const desc = move ?
-               'Go to move #' + move :
+      const moves = history.map((step, moveIndex) => {
+        const desc = moveIndex ?
+               'Go to move #' + moveIndex :
                'Go to game start';
         return (
-          <li key={move}>
-            <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <li key={moveIndex}>
+            <button onClick={() => this.jumpTo(moveIndex)}>{desc}</button>
           </li>
         )
       })
