@@ -96,3 +96,57 @@ ReactDOM.render(
     <Mailbox unreadMessages={messages}/>,
     document.getElementById('root')
 )
+
+/**
+ *condition ? true : false三目运算符
+ */
+function Log() {
+    const isLoggedIn = this.state.isLoggedIn;
+    return (
+        <div>
+            The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+        </div>
+    )
+}
+
+/**
+ * 阻止组件渲染
+ */
+function WarningBanner(props) {
+    if(!props.warn) return null;
+    return(
+        <div className="warning">
+            Warning!
+        </div>
+    )
+}
+
+class Page extends React.Component {
+    constroctor(props) {
+        super(props);
+        this.state = {
+            showWarning: true 
+        };
+        this.handleToggleClick = this.handleToggleClick.bind(this);
+    }
+    handleToggleClick() {
+        this.setState(state => {
+            showWarning: !showWarning
+        })
+    }
+    render() {
+        return(
+            <div>
+                <WarningBanner warn={this.state.showWarning} />
+                <button onClick={this.handleToggleClick}>
+                    {this.state.showWarning ? 'HIDE' : 'SHOW'}
+                </button>
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(
+    <Page />,
+    document.getElementById('root')
+)
