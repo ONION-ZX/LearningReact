@@ -6,16 +6,25 @@ function FancyBorder(props) {
     )
 }
 
-function WelcomeDialog() {
+function Dialog() {
     return (
         <FancyBorder color="blue">
             <h1 className="Dialog-title">
-                Welcome
+                {props.title}
             </h1>
-            <p className="Dialog-content">
-                Thank you for visiting our spacecraft!
+            <p className="Dialog-message">
+                {props.message}
             </p>
         </FancyBorder>
+    )
+}
+
+function WelcomeDialog() {
+    return (
+        <Dialog 
+            title="Welcome"
+            message="Thank you for visiting our spacecraft!"
+        />
     )
 }
 
