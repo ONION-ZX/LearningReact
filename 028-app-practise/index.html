@@ -4,7 +4,7 @@
 <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
 
 <script type="text/babel">
-    class FilterableProductTable extends React.Component {
+    class ProductCategoryRow extends React.Component {
         render() {
             const category = this.props.category;
             return (
@@ -19,6 +19,7 @@
     class ProductRow extends React.Component {
         render() {
             const product = this.props.product;
+            //是否还有库存
             const name = product.stocked ?
             product.name :
             <span style={{color: 'red'}}>
