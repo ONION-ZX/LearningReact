@@ -9,18 +9,26 @@ const appState = {
     }
 }
 
-function dispatch(action) {
+function createStore(state, stateChanger) {
+    getState = () => state;
+    const dispatch = (action) => stateChanger(state, action);
+    return {getState, dispatch};
+}
+
+function stateChanger(state, action) {
     switch(action.type) {
         case 'UPDATE_TITLE_TEXT':
-            appState.title.text = action.text;
+            state.title.text = action.text;
             break;
-        case 'UPDATE_TITLE)COLOR':
-            appState.title.color = action.color;
+        case 'UPDATE_TITLE_COLOR':
+            state.title.color = action.color;
             break;
         default:
             break;
     }
 }
+
+const store = createStore(appState, stateChanger);
 
 function renderApp(appState) {
     renderTitle(appState.title);
@@ -39,7 +47,7 @@ function renderContent(content) {
     contentDOM.style.color = content.color;
 }
 
-renderApp(appState);
-dispatch({type:'UPDATE_TITLE_TEXT', text: '《React.js小书》'});
-dispatch({type:'UPDATE_TITLE_COLOR', text: 'blue'});
-renderApp(appState); //渲染新数据
+renderApp(store.getState());
+store.dispatch({ type: 'UPDATE_TITLE_TEXT', text: '《React.js 小书》' });
+store.dispatch({ type: 'UPDATE_TITLE_COLOR', color: 'blue' });
+renderApp(store.getState());
