@@ -1,11 +1,15 @@
-function createStore(state, stateChanger) {
+// reducer是一个纯函数(接受两个参数:state和action)
+// reducer负责初始化和计算新的state
+function createStore(reducer) {
+    let state = null;
     const listeners = [];
     const subscribe = (listener) => listener.push(listener);
     getState = () => state;
     const dispatch = (action) => {
-        state = stateChanger(state, action);
+        state = reducer(state, action);
         listeners.forEach((listener) => listener())
     }
+    dispatch({});
     return {getState, dispatch, subscribe};
 }
 
@@ -29,18 +33,17 @@ function renderContent(newContent, oldContent={}) {
     contentDOM.style.color = content.color;
 }
 
-const appState = {
-    title: {
-        text: 'React.js小书',
-        color: 'red'
-    },
-    content: {
-        text: 'React.js小书内容',
-        color: 'blue'
-    }
-}
-
 function stateChanger(state, action) {
+    if(!state) return {
+        title: {
+            text: 'React.js小书',
+            color: 'red'
+        },
+        content: {
+            text: 'React.js小书内容',
+            color: 'blue'
+        }
+    }
     switch(action.type) {
         case 'UPDATE_TITLE_TEXT':
             return {
@@ -63,7 +66,31 @@ function stateChanger(state, action) {
     }
 }
 
-const store = createStore(appState, stateChanger);
+function themeReducer(state, action) {
+    if(!state) return {
+        themeName: 'Red theme',
+        themeColor: 'red'
+    }
+    switch(action.type) {
+        case 'UPDATE_THEME_NAME':
+            return {
+                ...state,
+                themeName: action.themeName
+            }
+        case 'UPDATE_THEME_COLOR':
+            return {
+                ...state,
+                themeColor: action.themeColor
+            }
+        default:
+            return state;
+    }
+}
+
+const store = createStore(themeReducer);
+
+
+
 store.subscribe(() => renderApp(store.getState())); //监听数据变化
 
 renderApp(store.getState()); //首次渲染
